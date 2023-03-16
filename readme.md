@@ -1,5 +1,5 @@
 # Simple Chat application for ASG internship Assessment
-
+Please refer to the database for the accounts to use for the application. Thank you.
 ## How to setup and run application
 
 ### Prerequisites
@@ -9,7 +9,7 @@
 
 ### How to develop and run locally
 
-1. Create a MySQL database named `chat_db` and import the sql file that can be downloaded here https://drive.google.com/file/d/1SUX7ULBlzkBFGz9nJal3Hs4PITC5NMDL/view
+1. Create a MySQL database named `chat_db` and import the sql file that can be downloaded here https://drive.google.com/file/d/1SUX7ULBlzkBFGz9nJal3Hs4PITC5NMDL/view?usp=sharing
 2. Clone the repo
 3. Create a `.env` file on the client. Make sure to use the `.env.example` as reference guide for the environment variables
 
