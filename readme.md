@@ -15,7 +15,7 @@
 
 - the `.env` file should be located on `server/.env`
 
-4. On root directory run:
+4. To install the packages for the front-end and back-end, go to each directory for the front-end and server from the root folder and then open up a terminal and run.
 
 ```console
 $ npm install
