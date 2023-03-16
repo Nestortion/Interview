@@ -24,8 +24,17 @@ const typeDefs = `
         message: String
         chat_id: Int
         user_id: Int
+        sender_name: String
     }
 
+    type NewChatResponse{
+        id: Int
+        chat_name: String
+        other_user_name: String
+        user_id: Int
+    }
+
+    
     input createUserInput{
         username: String
         password: String 
@@ -33,6 +42,7 @@ const typeDefs = `
         last_name: String
     }
 
+    
 
     type Query{
         users: [User]
@@ -46,10 +56,12 @@ const typeDefs = `
         createUserChat(chat_id: Int, message: String): UserChat
         createChat(user_id: Int): Chat
         login(username: String, password: String): User
+        logout: Boolean
     }
 
     type Subscription{
         newMessage(user_id: Int): UserChat
+        newChat(user_id: Int): NewChatResponse
     }
 
 `;

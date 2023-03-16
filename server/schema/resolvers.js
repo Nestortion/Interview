@@ -30,6 +30,13 @@ const resolvers = {
       if (otherUser) return `${otherUser.first_name} ${otherUser.last_name}`;
     },
   },
+  UserChat: {
+    sender_name: async ({ user_id }) => {
+      const sender = await Users.findOne({ where: { id: user_id } });
+
+      return `${sender.first_name} ${sender.last_name}`;
+    },
+  },
   Query: {
     users: async () => {
       return Users.findAll();
@@ -75,7 +82,7 @@ const resolvers = {
 
       return newUserChat;
     },
-    createChat: async (_, { user_id }, { req }) => {
+    createChat: async (_, { user_id }, { req, pubsub }) => {
       if (user_id === parseInt(req.headers.authorization)) return;
       const otherUser = await Users.findOne({ where: { id: user_id } });
 
@@ -106,6 +113,15 @@ const resolvers = {
         })
       );
 
+      pubsub.publish("NEW_CHAT", {
+        newChat: {
+          user_id: parseInt(req.headers.authorization),
+          id: newChat.id,
+          chat_name: newChat.chat_name,
+          other_user_name: `${otherUser.first_name} ${otherUser.last_name}`,
+        },
+      });
+
       return newChat;
     },
     login: async (_, { username, password }, { res, req }) => {
@@ -117,6 +133,10 @@ const resolvers = {
       } else {
         throw new GraphQLError("Username or Password is incorrect");
       }
+    },
+    logout: async (_, __, { res }) => {
+      res.clearCookie("user_id", { sameSite: "none", secure: true });
+      return true;
     },
   },
   Subscription: {
@@ -132,6 +152,17 @@ const resolvers = {
           });
 
           if (userGroup) {
+            return true;
+          }
+          return false;
+        }
+      ),
+    },
+    newChat: {
+      subscribe: withFilter(
+        (_, __, { pubsub }) => pubsub.asyncIterator("NEW_CHAT"),
+        async (payload, variables) => {
+          if (payload.newChat.user_id === variables.user_id) {
             return true;
           }
           return false;

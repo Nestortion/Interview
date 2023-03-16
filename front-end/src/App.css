@@ -15,23 +15,66 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 60%;
+  margin: auto;
 }
 
 textarea {
-  height: 20px;
+  height: 50px;
   margin: 0;
   padding: 0;
+  width: 80%;
+  resize: none;
+  margin: 0.25rem;
+}
+.send-button {
+  height: 50px;
+  margin: 0.25rem;
 }
 
 .composer {
+  width: 50%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  margin: 0.5rem 0;
 }
 
 .chatlist {
   display: flex;
   flex-direction: column;
+  width: 50%;
+}
+
+.login-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-container {
+  position: relative;
+  border-radius: 5px;
+}
+
+.notification-container:hover {
+  cursor: pointer;
+}
+
+.notify {
+  background-color: crimson;
+}
+.no-notif {
+  background-color: none;
+}
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: -100%;
+  background-color: aqua;
+  width: 200px;
+  border-radius: 10px;
+  white-space: normal;
 }
 
 .chathistory {
@@ -39,6 +82,27 @@ textarea {
   width: 50%;
   display: flex;
   flex-direction: column;
+  height: 400px;
+  overflow-y: auto;
+  border-radius: 5px;
+}
+
+.userchat-container {
+  background-color: aquamarine;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0;
+  margin-inline: 1rem;
+  padding: 0.5rem;
+}
+
+.sender {
+  align-self: flex-start;
+  font-size: 0.5rem;
+}
+.message {
+  align-self: flex-start;
 }
 
 .you {
@@ -48,9 +112,55 @@ textarea {
   align-self: flex-start;
 }
 
-.chatlist div {
+.chatscontainer {
+  display: flex;
+  align-self: flex-start;
+}
+
+.chatscontainer div {
   border: 2px solid green;
   border-radius: 3px;
+  padding: 3px;
+  background-color: aquamarine;
+  margin-right: 0.5rem;
+}
+.current-user,
+.login {
+  align-self: flex-end;
+  margin-top: 1rem;
+  margin-inline-end: 25%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login button {
+  margin-inline: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.login span {
+  align-self: flex-end;
+  margin-bottom: 0.25rem;
+}
+
+.danger {
+  background-color: darkred;
+  color: white;
+}
+
+.createchat {
+  align-self: flex-start;
+  margin-inline-start: 25%;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.25rem;
+}
+
+button {
+  background-color: chartreuse;
+  border: 1px solid white;
+  padding: 5px;
+  border-radius: 2px;
 }
 
 .chatlist div:hover {
